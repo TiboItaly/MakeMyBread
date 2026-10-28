@@ -52,6 +52,10 @@ function renderPlan(data) {
       <label for="plan-heure">Heure du repas</label>
       <input type="time" id="plan-heure" value="19:00">
 
+      <label for="plan-frigo">Pousse finale au frigo : <span id="plan-frigo-val">18 h</span></label>
+      <input type="range" id="plan-frigo" min="0" max="24" step="1" value="18">
+      <p class="sensoriel" id="plan-frigo-comment"></p>
+
       <p>
         <input type="checkbox" id="plan-noix"> <label for="plan-noix" style="display:inline">Pain aux noix</label><br>
         <input type="checkbox" id="plan-mie"> <label for="plan-mie" style="display:inline">Pain de mie (mode moule)</label><br>
@@ -64,6 +68,24 @@ function renderPlan(data) {
     <div id="plan-output"></div>
   `;
 
+  const frigoInput = el.querySelector('#plan-frigo');
+  const frigoComment = el.querySelector('#plan-frigo-comment');
+  const frigoVal = el.querySelector('#plan-frigo-val');
+  const commentFrigo = h => {
+    if (h === 0) return '« Pousse à température ambiante (1 h 30 - 2 h) : pain plus doux, acidité minimale, mais goût moins profond et alvéolage moins développé. À cuire le jour même. »';
+    if (h < 6) return `« Courte (${h} h) : le pain manquera un peu de développement de goût — la maturation froide n\'aura pas eu le temps d\'agir. Dépannage acceptable, pas idéal.`;
+    if (h < 12) return `« Correct (${h} h) : bon équilibre goût/acidité, mais la zone idéale de goût se situe vers 18-20 h.`;
+    if (h <= 21) return `« Idéal (${h} h) : zone de goût optimale (18-20 h) — acidité agréable, arômes développés, alvéolage régulier. Le choix recommandé.`;
+    return `« Maximum (${h} h) : acidité plus marquée et croûte plus épaisse — au-delà de 24 h la pâte risque de s\'affaiblir. À surveiller.`;
+  };
+  const updateFrigo = () => {
+    const h = Number(frigoInput.value);
+    frigoVal.textContent = h === 0 ? '0 h (ambiante)' : h + ' h';
+    frigoComment.textContent = commentFrigo(h);
+  };
+  frigoInput.addEventListener('input', updateFrigo);
+  updateFrigo();
+
   el.querySelector('#plan-generate').addEventListener('click', () => {
     const farineId = el.querySelector('#plan-farine').value;
     const nPains = Number(el.querySelector('#plan-npains').value);
@@ -72,7 +94,8 @@ function renderPlan(data) {
     const noix = el.querySelector('#plan-noix').checked;
     const mie = el.querySelector('#plan-mie').checked;
     const congel = el.querySelector('#plan-congel').checked;
-    generatePlan({ farineId, nPains, dateRepas, heureRepas, noix, mie, congel });
+    const frigoH = Number(frigoInput.value);
+    generatePlan({ farineId, nPains, dateRepas, heureRepas, noix, mie, congel, frigoH });
   });
 }
 
@@ -127,7 +150,8 @@ function generatePlan(opts) {
   const autolyseH = isManitoba ? 3 : (isComplete ? 1.5 : 1);
   const pousseMassMin = 180 + (isComplete ? 45 : 0) - (isManitoba ? 15 : 0);
   const picLevainH = isManitoba ? 4.5 : 5.5;
-  const pousseFinaleMin = 18 * 60; // mode recommandé : pousse longue au frigo
+  const frigoH = Math.min(Math.max(opts.frigoH ?? 18, 0), 24);
+  const pousseFinaleMin = frigoH > 0 ? frigoH * 60 : 105; // 0 h = pousse ambiante 1 h 30 - 2 h
 
   // Cible : date + heure du repas, cuisson finie 1 h avant (refroidissement)
   const [ch, cm] = opts.heureRepas.split(':').map(Number);
@@ -136,7 +160,9 @@ function generatePlan(opts) {
   const refroidi = addMin(repas, -60); // pain tranché à l'heure du repas
   const enfournage = addMin(refroidi, -50); // 20 min couvert + 20-25 min découvert + marge
   const debutCuissonFour = addMin(enfournage, -30);
-  const finFaconnage = addJ(addMin(debutCuissonFour, -pousseFinaleMin), -1); // façonnage la veille, frigo 18 h
+  const finFaconnage = frigoH > 0
+    ? addJ(addMin(debutCuissonFour, -pousseFinaleMin), -1) // façonnage la veille, pousse au frigo
+    : addMin(debutCuissonFour, -pousseFinaleMin); // pousse ambiante le jour même
   const debutPousseMasse = addMin(finFaconnage, -pousseMassMin);
   const finAutolyse = debutPousseMasse;
   const debutAutolyse = new Date(finAutolyse.getTime() - autolyseH * 3600000);
@@ -163,7 +189,7 @@ function generatePlan(opts) {
   let html = `
     <div class="card">
       <h3>Plan pour ${opts.nPains} pain${opts.nPains > 1 ? 's' : ''} — ${farine.nom}${farine.equivalentFrancais ? ' (' + farine.equivalentFrancais + ')' : ''}</h3>
-      <p>Pain prêt à être tranché le <strong>${jourFr(repas)} à ${fmtHm(repas)}</strong> — pousse finale longue au frigo (zone de goût idéale 18-20 h), compatible avec une journée de travail 9h-18h.</p>
+      <p>Pain prêt à être tranché le <strong>${jourFr(repas)} à ${fmtHm(repas)}</strong> — ${frigoH > 0 ? `pousse finale au frigo : ${frigoH} h${frigoH >= 18 && frigoH <= 20 ? ' (zone de goût idéale 18-20 h)' : ''}` : 'pousse finale à température ambiante (1 h 30 - 2 h), cuisson le jour même'}, compatible avec une journée de travail 9h-18h.</p>
       ${isManitoba ? '<p class="sensoriel">Manitoba : eau 345-350 g (+5-8 %), autolyse longue, pic du levain plus tôt.</p>' : ''}
       ${isComplete ? '<p class="sensoriel">Farine avec complète : pousse en masse allongée, mie naturellement plus serrée.</p>' : ''}
       ${opts.noix ? '<p class="sensoriel">Noix : 100-120 g max pour 500 g de farine, torréfiées et refroidies, à incorporer au premier pliage — jamais au pétrissage.</p>' : ''}
@@ -204,8 +230,10 @@ function generatePlan(opts) {
     'Démoulage rapide (moins de 2 min sur le plan), boule bien tendue, mains en creux, cousure vers le haut dans un linge fariné ou banneton.',
     ingredientsEtape('faconnage', opts, farine),
     'Surface tendue sans déchirure.');
-  html += step(finFaconnage, '❄️ Pousse finale au frigo', null,
-    '12 à 24 h au frigo, zone idéale de goût vers 18-20 h.',
+  html += step(finFaconnage, frigoH > 0 ? '❄️ Pousse finale au frigo' : '🕒 Pousse finale ambiante', null,
+    frigoH > 0
+      ? `${frigoH} h au frigo${frigoH >= 18 && frigoH <= 20 ? ' — zone idéale de goût' : frigoH < 12 ? ' — un peu courte : goût moins développé' : ''}.`
+      : '1 h 30 à 2 heures à température ambiante.',
     ingredientsEtape('frigo', opts, farine),
     'La pâte se raffermi et se parfume.');
   html += step(debutCuissonFour, '🔥 Préchauffage du four', 'cuisson-cocotte',

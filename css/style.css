@@ -183,6 +183,11 @@ table.compare tr:nth-child(even) { background: #f7ecd2; }
 
 /* ---- Formulaires ---- */
 label { font-weight: bold; color: var(--brun-fonce); display: block; margin: 12px 0 4px; }
+input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--ocre);
+}
 input[type="number"], input[type="time"], input[type="date"], select, input[type="text"] {
   width: 100%;
   min-height: 44px;
