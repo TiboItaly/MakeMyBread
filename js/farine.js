@@ -105,6 +105,81 @@ function renderFarine(data) {
     </div>
   `;
 
+  el.querySelector('#barcode-manual').addEventListener('click', () => {
+    const code = el.querySelector('#barcode-input').value.trim() || 'manuel-' + Date.now();
+    const items = getScanned();
+    items.push({ code, nom: 'Saisie manuelle', marque: '', proteines: null, fibres: null, energie: null, glucides: null, sucres: null, lipides: null, sel: null, type: '' });
+    saveScanned(items);
+    status.textContent = 'Fiche manuelle créée — complétez les valeurs sur l\'étiquette.';
+    el.querySelector('#barcode-input').value = '';
+    refreshScanned();
+  });
+
+  // OCR étiquette par vision (IA)
+  const ocrBtn = document.createElement('button');
+  ocrBtn.className = 'btn';
+  ocrBtn.style.marginLeft = '6px';
+  ocrBtn.textContent = '📸 Photographier l\'étiquette (IA)';
+  ocrBtn.addEventListener('click', () => {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.capture = 'environment';
+    fileInput.onchange = async () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+      status.textContent = 'Analyse de l\'étiquette en cours…';
+      const b64 = await new Promise((res, rej) => {
+        const r = new FileReader();
+        r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(file);
+      });
+      try {
+        const res = await fetch(CHAT_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            mode: 'ocr',
+            messages: [{ role: 'user', content: [
+              { type: 'text', text: 'Extrais les données de cette étiquette de farine.' },
+              { type: 'image_url', image_url: b64 }
+            ] }]
+          })
+        });
+        if (!res.ok) throw new Error();
+        const j = await res.json();
+        const clean = (j.reply || '').replace(/```json|```/g, '').trim();
+        const data = JSON.parse(clean);
+        const items = getScanned();
+        items.push({
+          code: 'ocr-' + Date.now(),
+          nom: data.nom || 'Produit scanné',
+          marque: data.marque || '',
+          proteines: data.proteines ?? null,
+          fibres: data.fibres ?? null,
+          cendres: data.cendres ?? null,
+          humidite: data.humidite ?? null,
+          energie: data.energie ?? null,
+          glucides: data.glucides ?? null,
+          sucres: data.sucres ?? null,
+          lipides: data.lipides ?? null,
+          sel: data.sel ?? null,
+          origine: data.origine || '',
+          mouture: data.mouture || '',
+          type: data.type || ''
+        });
+        saveScanned(items);
+        status.textContent = `Étiquette extraite : ${data.nom || 'produit'} — fiche créée.`;
+        refreshScanned();
+        if (typeof refreshPlanFlours === 'function') refreshPlanFlours();
+      } catch (e) {
+        status.textContent = 'Extraction impossible — fonction IA non déployée (voir README) ou étiquette illisible. Utilisez l\'ajout manuel.';
+      }
+    };
+    fileInput.click();
+  });
+  const manualBtn = el.querySelector('#barcode-manual');
+  manualBtn.parentNode.insertBefore(ocrBtn, manualBtn.nextSibling);
+
   const scannedList = el.querySelector('#scanned-list');
   const refreshScanned = () => {
     const items = getScanned();
@@ -145,15 +220,5 @@ function renderFarine(data) {
     el.querySelector('#barcode-input').value = '';
     refreshScanned();
     if (typeof refreshPlanFlours === 'function') refreshPlanFlours();
-  });
-
-  el.querySelector('#barcode-manual').addEventListener('click', () => {
-    const code = el.querySelector('#barcode-input').value.trim() || 'manuel-' + Date.now();
-    const items = getScanned();
-    items.push({ code, nom: 'Saisie manuelle', marque: '', proteines: null, fibres: null, energie: null, glucides: null, sucres: null, lipides: null, sel: null, type: '' });
-    saveScanned(items);
-    status.textContent = 'Fiche manuelle créée — complétez les valeurs sur l\'étiquette.';
-    el.querySelector('#barcode-input').value = '';
-    refreshScanned();
   });
 }

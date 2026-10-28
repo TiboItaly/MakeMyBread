@@ -27,18 +27,24 @@ Ajouter une recette ou une farine = éditer `data/bread.json`, aucun code à mod
 
 Le workflow `.github/workflows/pages.yml` déploie automatiquement la branche `main`. Activer dans **Settings → Pages → Source : GitHub Actions**.
 
-### Assistant chat (Mistral)
+### Couche IA (V2) — une seule route backend
 
-Le chat nécessite un backend léger pour protéger la clé API. Le frontend appelle `POST /api/chat` avec `{ messages: [...] }` et attend `{ reply: "..." }`.
+Toutes les fonctions IA passent par **une unique Edge Function** `chat` (`supabase/functions/chat/index.ts`) qui assemble contexte + message + éventuelle image et appelle l'API Mistral. Trois modes via le champ `mode` :
 
-Un proxy Supabase Edge Function est fourni (`supabase/functions/chat/index.ts`) :
+- `chat` : assistant conversationnel, contexte méthode + **plan en cours injecté** (assistance active : l'IA recalcule les étapes en cas d'imprévu)
+- `diagnostic` : **diagnostic photo** (levain, pâte, mie) — modèle vision, leçons apprises en contexte, réponse structurée : ce que je vois / diagnostic / correction
+- `ocr` : **extraction d'étiquette par vision** (onglet Farine) — renvoie un JSON structuré (protéines, cendres, nutrition, origine, mouture)
+
+La clé API Mistral est **uniquement un secret côté serveur** :
 
 ```bash
-supabase secrets set MISTRAL_API_KEY=... # puis
+supabase secrets set MISTRAL_API_KEY=...   # clé Mistral
 supabase functions deploy chat
 ```
 
-Puis adapter l'URL `fetch('/api/chat', ...)` dans `js/chat.js` vers l'URL de la fonction déployée. Sans backend, le chat affiche un message de repli et le reste du site reste 100 % fonctionnel.
+Puis adapter `CHAT_ENDPOINT` dans `js/chat.js` vers l'URL de la fonction déployée. Sans backend, le site affiche des messages de repli et reste 100 % fonctionnel.
+
+**Mémoire des fournées (structure prête)** : chaque échange IA est journalisé dans `localStorage` (clé `mmb_memory`) — question, réponse, plan en cours. Structure prévue pour le coaching multi-fournées (cible V2+) : historique des farines scannées, plans suivis, photos des résultats.
 
 ## Hors périmètre v1
 
