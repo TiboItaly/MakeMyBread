@@ -76,6 +76,17 @@ function renderFarine(data) {
     <h2>Farines</h2>
 
     <div class="card">
+      <h3>Scanner un produit</h3>
+      <p>Photographiez l'étiquette (extraction IA), scannez le code-barres (Open Food Facts) ou saisissez la fiche manuellement. Les fiches sont conservées localement et consultables dans le Plan.</p>
+      <label for="barcode-input">Code-barres</label>
+      <input type="text" id="barcode-input" inputmode="numeric" pattern="[0-9]*" placeholder="Ex. 8013114000134">
+      <button class="btn" id="barcode-lookup">Rechercher</button>
+      <button class="btn btn-secondary" id="barcode-manual">Ajout manuel</button>
+      <p class="chat-notice" id="barcode-status"></p>
+      <div id="scanned-list"></div>
+    </div>
+
+    <div class="card">
       <h3>Vue comparative</h3>
       <div style="overflow-x:auto">
         <table class="compare">
@@ -91,17 +102,6 @@ function renderFarine(data) {
       <h3>Composition de l'eau</h3>
       <ul>${data.eau.parametres.map(p => `<li>${p}</li>`).join('')}</ul>
       <p><strong>Test maison :</strong> ${data.eau.test}</p>
-    </div>
-
-    <div class="card">
-      <h3>Scanner un produit (Open Food Facts)</h3>
-      <p>Saisissez ou scannez (appareil photo) le code-barres d'un paquet de farine pour pré-remplir sa composition. Les fiches sont conservées localement et consultables dans le Plan.</p>
-      <label for="barcode-input">Code-barres</label>
-      <input type="text" id="barcode-input" inputmode="numeric" pattern="[0-9]*" placeholder="Ex. 8013114000134">
-      <button class="btn" id="barcode-lookup">Rechercher</button>
-      <button class="btn btn-secondary" id="barcode-manual">Ajout manuel</button>
-      <p class="chat-notice" id="barcode-status"></p>
-      <div id="scanned-list"></div>
     </div>
   `;
 
