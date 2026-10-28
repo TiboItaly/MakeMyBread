@@ -37,5 +37,11 @@ function renderSavoir(data) {
       <p>${d.panzanella.recette}</p>
       <p><strong>Préparation :</strong> ${d.panzanella.preparation}</p>
     </div>
+
+    <div class="card" id="recette-pain-perdu">
+      <h3>Pain perdu</h3>
+      <p>${d.painPerdu.recette}</p>
+      <p><strong>Préparation :</strong> ${d.painPerdu.preparation}</p>
+    </div>
   `;
 }

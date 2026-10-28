@@ -271,6 +271,10 @@
     "panzanella": {
       "recette": "Pain rassis de 2-3 jours coupé en cubes (la mie sèche absorbe la vinaigrette sans se défaire), 4 tomates mûres en cubes, 1 concombre en dés, 1 oignon rouge émincé, basilic frais ciselé, huile d'olive, vinaigre de vin rouge, sel et poivre.",
       "preparation": "Frotter les cubes de pain avec l'ail, arroser d'un peu de vinaigre. Mélanger tomates, concombre, oignon, sel ; laisser dégorger 15 min. Mélanger le tout avec le pain, huile d'olive généreuse, basilic. Laisser reposer 30 minutes à température ambiante avant de servir — le pain doit s'imbiber mais rester souple."
+    },
+    "painPerdu": {
+      "recette": "Restes de pain rassis tranchés (1,5-2 cm d'épaisseur, mie un peu sèche idéale — le levain en fait un pain perdu excellent), 2 œufs, 20 cl de lait, 1 c. à s. de sucre (ou miel), 1 pincée de sel, beurre pour la cuisson, sucre vanillé ou cannelle.",
+      "preparation": "Fouetter œufs, lait, sucre et sel dans une assiette creuse. Tremper les tranches 30 secondes de chaque côté — elles doivent s'imbiber sans se défaire. Cuisson à la poêle sur beurre mousseux, 2-3 minutes par face, jusqu'à doré. Servir saupoudré de sucre vanillé ou nappé de miel."
     }
   },
   "conservation": [
@@ -360,7 +364,7 @@
         "Jours 1-3 : entier, face de coupe contre une planche, à l'air libre.",
         "Jamais de boîte hermétique ni de frigo.",
         "Jours 4-6 : tranches grillées, ou congeler les tranches dès le deuxième jour.",
-        "Au-delà : croûtons, chapelure, panzanella.",
+        "Au-delà : croûtons, chapelure, panzanella, pain perdu.",
         "Ne jamais trancher à l'avance."
       ]
     }

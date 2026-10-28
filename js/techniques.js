@@ -5,14 +5,19 @@ function renderTechniques(data) {
     <p>Les gestes clés, étape par étape. L'icône 📱 à côté de chaque titre ouvre un reel Instagram qui montre la technique en vidéo.</p>
     ${data.techniques.map(t => {
       const extra = t.id === 'conservation'
-        ? `<p><span class="tech-link" data-goto="panzanella">🥗 Voir la recette complète de la Panzanella dans l'onglet Recettes</span></p>`
+        ? ''
         : '';
+      const astucesHtml = t.astuces.map(a =>
+        t.id === 'conservation' && a.includes('panzanella')
+          ? `<li>${a.replace('panzanella', '<span class="tech-link" data-goto="panzanella" style="font-weight:normal">panzanella</span>')}</li>`
+          : `<li>${a}</li>`
+      ).join('');
       return `
       <div class="card technique-card" id="tech-${t.id}">
         <h3>${t.nom}
           <a class="reel-link" href="${t.reel}" target="_blank" rel="noopener" aria-label="Voir le reel Instagram : ${t.nom}">📱</a>
         </h3>
-        <ul>${t.astuces.map(a => `<li>${a}</li>`).join('')}</ul>
+        <ul>${astucesHtml}</ul>
         ${extra}
       </div>`;
     }).join('')}

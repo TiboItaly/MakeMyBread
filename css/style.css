@@ -163,6 +163,7 @@ h3 { color: var(--brun); margin-bottom: 6px; }
   cursor: pointer;
   font-size: 0.9rem;
 }
+li .tech-link { display: inline; margin-top: 0; }
 .farine-kv { margin: 6px 0; }
 .farine-kv dt { font-weight: bold; color: var(--brun); font-size: 0.85rem; text-transform: uppercase; }
 .farine-kv dd { margin: 0 0 8px; }
