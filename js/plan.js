@@ -79,9 +79,12 @@ function renderPlan(data) {
 // Quantités d'ingrédients par étape (recette de référence x nombre de pains)
 function ingredientsEtape(etape, opts, farine) {
   const n = opts.nPains;
-  const mult = n <= 1 ? 1 : n; // 1 pain = base ; 2-3 pains = recette "deux pains" x (n/2) arrondi
   const base = {
-    'construction': [`${50 * n} g de levain mère`, `${150 * n} g de farine`, `${100 * n} g d'eau`],
+    'construction': n === 1
+      ? ['25 g de levain mère', '75 g de farine', '50 g d\'eau — soit 150 g de levain pour 1 pain']
+      : n === 2
+        ? ['50 g de levain mère', '150 g de farine', '100 g d\'eau — soit 300 g de levain pour 2 pains']
+        : ['75 g de levain mère', '225 g de farine', '150 g d\'eau — soit 450 g de levain pour 3 pains'],
     'autolyse': [
       `${350 * n} g de farine tipo 0${farine.nom.toLowerCase().includes('manitoba') ? ' → Manitoba' : ''}`,
       `${150 * n} g de farine complète`,
@@ -90,6 +93,7 @@ function ingredientsEtape(etape, opts, farine) {
     'petrissage': [`${150 * n} g de levain de production au pic`, `${10 * n} g de sel`],
     'noix': [`${(n > 1 ? 220 : 110) * 1} g de noix torréfiées et refroidies`],
     'pousse': [],
+    'division': [`${n} bannetons ou linges farinés`],
     'faconnage': ['Linge fariné ou banneton'],
     'frigo': [],
     'prechauffage': ['Cocotte en fonte', 'Disque de papier cuisson'],
@@ -169,7 +173,7 @@ function generatePlan(opts) {
   `;
 
   html += step(constructionLevain, '🫙 Construction du levain de production', 'autolyse',
-    `${data.levain.production.ratios} — pic attendu vers ${fmtHm(picLevain)}. ${data.levain.production.pic}`,
+    `Quantités ajustées pour ${opts.nPains} pain${opts.nPains > 1 ? 's' : ''} — pic attendu vers ${fmtHm(picLevain)}. ${data.levain.production.pic}`,
     ingredientsEtape('construction', opts, farine),
     'Dôme bien bombé à son maximum = pic.');
   html += step(debutAutolyse, '💧 Autolyse', 'autolyse',
@@ -189,6 +193,12 @@ function generatePlan(opts) {
       'Au premier pliage, 100-120 g max pour 500 g de farine, torréfiées et refroidies.',
       ingredientsEtape('noix', opts, farine),
       'Noix réparties sans écraser la pâte.');
+  }
+  if (opts.nPains > 1) {
+    html += step(new Date(finFaconnage.getTime() - 5 * 60000), '🔪 Division du pâton', 'faconnage',
+      `À la fin de la pousse en masse, juste avant le façonnage : diviser le pâton en ${opts.nPains} pâtons de même poids (utiliser la balance), préformer rapidement en boules, 10 minutes de repos sous un linge avant le façonnage final.`,
+      ingredientsEtape('division', opts, farine),
+      'Pâtons de poids identiques = cuisson homogène.');
   }
   html += step(finFaconnage, '🌀 Façonnage', 'faconnage',
     'Démoulage rapide (moins de 2 min sur le plan), boule bien tendue, mains en creux, cousure vers le haut dans un linge fariné ou banneton.',

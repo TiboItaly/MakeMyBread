@@ -38,9 +38,9 @@
       "Signes de bonne santé : odeur acidulée agréable, dôme en 4 à 6 heures après rafraîchi à température ambiante."
     ],
     "production": {
-      "ratios": "50 g de mère + 150 g de farine + 100 g d'eau = 300 g",
+      "ratios": "Base : 50 g de mère + 150 g de farine + 100 g d'eau = 300 g (pour 2 pains)",
       "pic": "Pic en 4 à 6 heures à température ambiante.",
-      "regle": "150 g de levain de production par pain ; 300 g couvrent exactement deux pains.",
+      "regle": "150 g de levain de production par pain ; ajuster les quantités au nombre de pains.",
       "directFroid": "Construction directe depuis la mère froide possible, mais pic retardé de 1 à 2 heures et moins prévisible. Le rafraîchi intermédiaire reste la voie recommandée.",
       "manitoba": "Manitoba parfaitement adaptée au levain de production : dôme plus tenace, fenêtre de pic plus large."
     },
@@ -215,7 +215,7 @@
         0.1,
         0.1
       ],
-      "objectif": "Démoulage rapide (moins de 2 minutes sur le plan), boule bien tendue, mains en creux. Cousure vers le haut dans un linge fariné ou banneton.",
+      "objectif": "Démoulage rapide (moins de 2 minutes sur le plan), boule bien tendue, mains en creux (paumes en bol, sans écraser : la friction du plan tend la surface). Cousure vers le haut dans un linge fariné ou banneton.",
       "sensoriel": "Surface tendue sans déchirure."
     },
     {
@@ -267,7 +267,11 @@
       "conditions": "Chaleur descendante 280-320 °C, vapeur à créer soi-même (cocotte en fonte tout métal, ou lèche-frites d'eau sur les braises), thermomètre infrarouge recommandé.",
       "cuisson": "Environ 1,5 fois plus rapide ; hydratation réduite (62-64 %) conseillée."
     },
-    "noix": "100-120 g max pour 500 g de farine, incorporation au premier ou deuxième pliage, torréfiées et refroidies."
+    "noix": "100-120 g max pour 500 g de farine, incorporation au premier ou deuxième pliage, torréfiées et refroidies.",
+    "panzanella": {
+      "recette": "Pain rassis de 2-3 jours coupé en cubes (la mie sèche absorbe la vinaigrette sans se défaire), 4 tomates mûres en cubes, 1 concombre en dés, 1 oignon rouge émincé, basilic frais ciselé, huile d'olive, vinaigre de vin rouge, sel et poivre.",
+      "preparation": "Frotter les cubes de pain avec l'ail, arroser d'un peu de vinaigre. Mélanger tomates, concombre, oignon, sel ; laisser dégorger 15 min. Mélanger le tout avec le pain, huile d'olive généreuse, basilic. Laisser reposer 30 minutes à température ambiante avant de servir — le pain doit s'imbiber mais rester souple."
+    }
   },
   "conservation": [
     "Jours 1-3 : entier, face de coupe contre une planche, à l'air libre ; jamais de boîte hermétique ni de frigo.",
@@ -319,7 +323,8 @@
       "reel": "https://www.instagram.com/reel/faconnage-boule-levain/",
       "astuces": [
         "Démoulage rapide : moins de 2 minutes sur le plan.",
-        "Boule bien tendue, mains en creux, rotation pour tendre la surface.",
+        "« Mains en creux » : paumes arrondies en forme de bol, sans serrer — on fait rouler la boule sur le plan en la retenant légèrement par les côtés, la friction du plan tend la surface (tension), les mains ne l'écrasent pas.",
+        "Boule bien tendue, rotation pour tendre la surface.",
         "Cousure vers le haut dans un linge fariné ou un banneton.",
         "Farine de force (Manitoba) : façonnage très docile."
       ]

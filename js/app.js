@@ -34,6 +34,7 @@ async function main() {
   renderFarine(BREAD_DATA);
   renderPlan(BREAD_DATA);
   renderTechniques(BREAD_DATA);
+  initTechniqueLinks();
   renderSavoir(BREAD_DATA);
   initChat();
 }

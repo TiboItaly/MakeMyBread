@@ -32,15 +32,10 @@ function renderSavoir(data) {
       <p><strong>Pain aux noix :</strong> ${d.noix}</p>
     </div>
 
-    <div class="card">
-      <h3>Conservation</h3>
-      <ul>${data.conservation.map(c => `<li>${c}</li>`).join('')}</ul>
-    </div>
-
-    <div class="card">
-      <h3>Coûts (Italie)</h3>
-      <p>${data.couts.maison}</p>
-      <p>${data.couts.artisan}</p>
+    <div class="card" id="recette-panzanella">
+      <h3>Salade de pain rassis : Panzanella</h3>
+      <p>${d.panzanella.recette}</p>
+      <p><strong>Préparation :</strong> ${d.panzanella.preparation}</p>
     </div>
   `;
 }
