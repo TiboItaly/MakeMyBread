@@ -46,6 +46,12 @@ function renderPlan(data) {
         <option value="3">3 pains</option>
       </select>
 
+      <label for="plan-cuisson">Mode de cuisson</label>
+      <select id="plan-cuisson">
+        <option value="cocotte" selected>Cocotte en fonte (recommandé)</option>
+        <option value="plaque">Plaque / pierre + vapeur</option>
+      </select>
+
       <label for="plan-date">Quand souhaites-tu manger le pain ?</label>
       <input type="date" id="plan-date" value="${demain}" min="${new Date().toISOString().slice(0, 10)}">
 
@@ -94,8 +100,9 @@ function renderPlan(data) {
     const noix = el.querySelector('#plan-noix').checked;
     const mie = el.querySelector('#plan-mie').checked;
     const congel = el.querySelector('#plan-congel').checked;
+    const modeCuisson = el.querySelector('#plan-cuisson').value;
     const frigoH = Number(frigoInput.value);
-    generatePlan({ farineId, nPains, dateRepas, heureRepas, noix, mie, congel, frigoH });
+    generatePlan({ farineId, nPains, dateRepas, heureRepas, noix, mie, congel, frigoH, modeCuisson });
   });
 }
 
@@ -119,7 +126,9 @@ function ingredientsEtape(etape, opts, farine) {
     'division': [`${n} bannetons ou linges farinés`],
     'faconnage': ['Linge fariné ou banneton'],
     'frigo': [],
-    'prechauffage': ['Cocotte en fonte', 'Disque de papier cuisson'],
+    'prechauffage': opts.modeCuisson === 'plaque'
+      ? ['Pierre à pain ou plaque de cuisson', 'Lèche-frites vide en dessous', 'Eau chaude pour la vapeur', 'Brumisateur']
+      : ['Cocotte en fonte', 'Disque de papier cuisson'],
     'enfournage': [],
     'refroidissement': []
   };
@@ -146,6 +155,7 @@ function generatePlan(opts) {
 
   const isManitoba = farine.nom.toLowerCase().includes('manitoba');
   const isComplete = ['integrale', 'tipo1', 'tipo2', 'seigle'].includes(farine.id);
+  const isPlaque = opts.modeCuisson === 'plaque';
 
   const autolyseH = isManitoba ? 3 : (isComplete ? 1.5 : 1);
   const pousseMassMin = 180 + (isComplete ? 45 : 0) - (isManitoba ? 15 : 0);
@@ -158,7 +168,7 @@ function generatePlan(opts) {
   const [yy, mm, dd] = opts.dateRepas.split('-').map(Number);
   const repas = new Date(yy, mm - 1, dd, ch, cm, 0);
   const refroidi = addMin(repas, -60); // pain tranché à l'heure du repas
-  const enfournage = addMin(refroidi, -50); // 20 min couvert + 20-25 min découvert + marge
+  const enfournage = addMin(refroidi, -50); // cuisson ~40-45 min + marge (identique cocotte/plaque)
   const debutCuissonFour = addMin(enfournage, -30);
   const finFaconnage = addMin(debutCuissonFour, -pousseFinaleMin); // la soustraction traverse minuit toute seule
   const debutPousseMasse = addMin(finFaconnage, -pousseMassMin);
@@ -187,7 +197,7 @@ function generatePlan(opts) {
   let html = `
     <div class="card">
       <h3>Plan pour ${opts.nPains} pain${opts.nPains > 1 ? 's' : ''} — ${farine.nom}${farine.equivalentFrancais ? ' (' + farine.equivalentFrancais + ')' : ''}</h3>
-      <p>Pain prêt à être tranché le <strong>${jourFr(repas)} à ${fmtHm(repas)}</strong> — ${frigoH > 0 ? `pousse finale au frigo : ${frigoH} h${frigoH >= 18 && frigoH <= 20 ? ' (zone de goût idéale 18-20 h)' : ''}` : 'pousse finale à température ambiante (1 h 30 - 2 h), cuisson le jour même'}, compatible avec une journée de travail 9h-18h.</p>
+      <p>Pain prêt à être tranché le <strong>${jourFr(repas)} à ${fmtHm(repas)}</strong> — cuisson ${isPlaque ? 'sur plaque/pierre avec vapeur' : 'en cocotte'}, ${frigoH > 0 ? `pousse finale au frigo : ${frigoH} h${frigoH >= 18 && frigoH <= 20 ? ' (zone de goût idéale 18-20 h)' : ''}` : 'pousse finale à température ambiante (1 h 30 - 2 h), cuisson le jour même'}, compatible avec une journée de travail 9h-18h.</p>
       ${isManitoba ? '<p class="sensoriel">Manitoba : eau 345-350 g (+5-8 %), autolyse longue, pic du levain plus tôt.</p>' : ''}
       ${isComplete ? '<p class="sensoriel">Farine avec complète : pousse en masse allongée, mie naturellement plus serrée.</p>' : ''}
       ${opts.noix ? '<p class="sensoriel">Noix : 100-120 g max pour 500 g de farine, torréfiées et refroidies, à incorporer au premier pliage — jamais au pétrissage.</p>' : ''}
@@ -234,14 +244,20 @@ function generatePlan(opts) {
       : '1 h 30 à 2 heures à température ambiante.',
     ingredientsEtape('frigo', opts, farine),
     'La pâte se raffermi et se parfume.');
-  html += step(debutCuissonFour, '🔥 Préchauffage du four', 'cuisson-cocotte',
-    'Four 250 °C, grille médiane, cocotte vide 30 minutes. Disque de papier cuisson au fond.',
+  html += step(debutCuissonFour, '🔥 Préchauffage du four', isPlaque ? 'cuisson-plaque' : 'cuisson-cocotte',
+    isPlaque
+      ? 'Four 250 °C avec pierre/plaque chaude et lèche-frites vide en dessous, 30 minutes de chauffe.'
+      : 'Four 250 °C, grille médiane, cocotte vide 30 minutes. Disque de papier cuisson au fond.',
     ingredientsEtape('prechauffage', opts, farine),
     '');
-  html += step(enfournage, '🥖 Enfournage et cuisson', 'cuisson-cocotte',
-    'Pain froid, entailles franches. 20 min couvert, 20-25 min à découvert, dix dernières minutes pain sur la grille (hors cocotte).',
+  html += step(enfournage, isPlaque ? '🥖 Enfournage + vapeur' : '🥖 Enfournage et cuisson', isPlaque ? 'cuisson-plaque' : 'cuisson-cocotte',
+    isPlaque
+      ? 'Pain froid sur la pierre/plaque chaude, entailles franches, puis verser de l\'eau chaude dans le lèche-frites et brumiser les parois (attention aux mains). Vapeur 10-12 min, puis évacuer (entrouvrir la porte 30 s) et finir à sec 20-25 min — la croûte dore plus vite sans cocotte, surveiller.'
+      : 'Pain froid, entailles franches. 20 min couvert, 20-25 min à découvert, dix dernières minutes pain sur la grille (hors cocotte).',
     ingredientsEtape('enfournage', opts, farine),
-    'Croûte ambrée profonde, dessous non brûlé.');
+    isPlaque
+      ? 'Croûte fine et croustillante, bien dorée sans brûler.'
+      : 'Croûte ambrée profonde, dessous non brûlé.');
   html += step(refroidi, '🌬️ Refroidissement', 'conservation',
     'Une heure sur grille avant de trancher.',
     ingredientsEtape('refroidissement', opts, farine),
