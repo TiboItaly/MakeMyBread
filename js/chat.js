@@ -9,9 +9,17 @@ function initChat() {
 
   fab.addEventListener('click', () => {
     panel.hidden = !panel.hidden;
-    if (!panel.hidden) input.focus();
+    if (!panel.hidden && !panel.classList.contains('collapsed')) input.focus();
   });
   document.getElementById('chat-close').addEventListener('click', () => panel.hidden = true);
+
+  const toggleBtn = document.getElementById('chat-toggle');
+  toggleBtn.addEventListener('click', () => {
+    panel.classList.toggle('collapsed');
+    toggleBtn.textContent = panel.classList.contains('collapsed') ? '+' : '–';
+    toggleBtn.setAttribute('aria-label', panel.classList.contains('collapsed') ? 'Agrandir' : 'Réduire');
+    if (!panel.classList.contains('collapsed')) input.focus();
+  });
 
   const addMsg = (text, who) => {
     const div = document.createElement('div');

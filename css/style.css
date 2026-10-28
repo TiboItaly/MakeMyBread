@@ -1,12 +1,14 @@
 :root {
-  --beige: #f5ead6;
-  --creme: #faf4e8;
-  --brun: #6b4226;
-  --ocre: #c98a3d;
-  --brun-fonce: #3f2a18;
-  --vert: #4a6b3a;
-  --danger: #a03b2e;
-  --texte: #2e2318;
+  --beige: #fdf3e3;
+  --creme: #fffaf0;
+  --brun: #9a4d1f;
+  --ocre: #e87b2a;
+  --ocre-clair: #f9c46b;
+  --brun-fonce: #7a2e12;
+  --vert: #5a8a3c;
+  --vert-vif: #6db33f;
+  --danger: #c0392b;
+  --texte: #3a2a1a;
   --rayon: 14px;
 }
 
@@ -22,12 +24,12 @@ body {
 }
 
 .topbar {
-  background: linear-gradient(135deg, var(--brun), var(--brun-fonce));
-  color: var(--creme);
-  padding: 16px 20px;
+  background: linear-gradient(135deg, #e87b2a 0%, #c8491d 55%, #8a2be2 130%);
+  color: #fff;
+  padding: 18px 20px;
   text-align: center;
 }
-.topbar h1 { margin: 0; font-size: 1.5rem; }
+.topbar h1 { margin: 0; font-size: 1.5rem; text-shadow: 0 1px 2px rgba(0,0,0,0.25); }
 .tagline { margin: 6px 0 0; font-size: 0.9rem; opacity: 0.9; }
 
 main { max-width: 860px; margin: 0 auto; padding: 16px; }
@@ -36,12 +38,12 @@ main { max-width: 860px; margin: 0 auto; padding: 16px; }
 .tab-panel.active { display: block; }
 
 h2 {
-  color: var(--brun);
+  color: var(--brun-fonce);
   border-bottom: 3px solid var(--ocre);
   padding-bottom: 6px;
   margin-top: 8px;
 }
-h3 { color: var(--brun-fonce); margin-bottom: 6px; }
+h3 { color: var(--brun); margin-bottom: 6px; }
 
 .card {
   background: var(--creme);
@@ -56,7 +58,7 @@ h3 { color: var(--brun-fonce); margin-bottom: 6px; }
 
 .sensoriel {
   display: inline-block;
-  background: #efe2c4;
+  background: #fdeeb8;
   border-left: 4px solid var(--ocre);
   padding: 6px 10px;
   border-radius: 6px;
@@ -86,7 +88,7 @@ h3 { color: var(--brun-fonce); margin-bottom: 6px; }
   cursor: pointer;
 }
 .tab-nav button .nav-ico { display: block; font-size: 1.3rem; margin-bottom: 2px; }
-.tab-nav button.active { background: var(--ocre); color: var(--brun-fonce); font-weight: bold; }
+.tab-nav button.active { background: var(--ocre); color: #fff; font-weight: bold; }
 
 @media (min-width: 700px) {
   .tab-nav { top: 0; bottom: auto; }
@@ -123,7 +125,7 @@ h3 { color: var(--brun-fonce); margin-bottom: 6px; }
 .farine-card h3 { margin-top: 0; }
 .farine-badge {
   display: inline-block;
-  background: var(--ocre);
+  background: var(--vert-vif);
   color: #fff;
   font-size: 0.78rem;
   padding: 2px 8px;
@@ -146,15 +148,16 @@ table.compare th, table.compare td {
   padding: 8px 6px;
   text-align: left;
 }
-table.compare th { background: var(--brun); color: var(--creme); }
+table.compare th { background: var(--brun-fonce); color: #fff; }
+table.compare tr:nth-child(even) { background: #f7ecd2; }
 
 /* ---- Formulaires ---- */
-label { font-weight: bold; color: var(--brun); display: block; margin: 12px 0 4px; }
+label { font-weight: bold; color: var(--brun-fonce); display: block; margin: 12px 0 4px; }
 input[type="number"], input[type="time"], select, input[type="text"] {
   width: 100%;
   min-height: 44px;
   padding: 8px;
-  border: 2px solid var(--brun);
+  border: 2px solid var(--ocre-clair);
   border-radius: 8px;
   font-size: 1rem;
   font-family: inherit;
@@ -176,12 +179,12 @@ input[type="checkbox"] { width: 20px; height: 20px; min-height: 20px; vertical-a
 }
 .btn:hover { background: var(--ocre); }
 .btn-secondary { background: var(--vert); }
-.btn-secondary:hover { background: #35502a; }
+.btn-secondary:hover { background: var(--vert-vif); }
 
 /* ---- Plan ---- */
 .plan-step {
   background: var(--creme);
-  border: 1px solid #e2d3b8;
+  border: 1px solid #e8d5b0;
   border-left: 5px solid var(--ocre);
   border-radius: 10px;
   padding: 12px;
@@ -189,9 +192,10 @@ input[type="checkbox"] { width: 20px; height: 20px; min-height: 20px; vertical-a
 }
 .plan-step .step-time {
   font-weight: bold;
-  color: var(--brun);
+  color: var(--brun-fonce);
   font-size: 1.05rem;
 }
+.plan-step:nth-child(even) { border-left-color: var(--vert-vif); }
 .plan-step .step-title { font-weight: bold; }
 .plan-step .objectif { font-size: 0.92rem; margin-top: 4px; }
 
@@ -203,7 +207,8 @@ input[type="checkbox"] { width: 20px; height: 20px; min-height: 20px; vertical-a
   width: 56px; height: 56px;
   border-radius: 50%;
   border: none;
-  background: var(--ocre);
+  background: linear-gradient(135deg, #e87b2a, #c8491d);
+  color: #fff;
   font-size: 1.5rem;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,0.25);
@@ -213,29 +218,37 @@ input[type="checkbox"] { width: 20px; height: 20px; min-height: 20px; vertical-a
 .chat-panel {
   position: fixed;
   right: 12px;
-  bottom: 140px;
+  bottom: 76px;
   width: min(340px, calc(100vw - 24px));
-  max-height: 65vh;
+  max-height: 52vh;
   background: var(--creme);
-  border: 2px solid var(--brun);
+  border: 2px solid var(--brun-fonce);
   border-radius: 14px;
   display: flex;
   flex-direction: column;
   z-index: 70;
   box-shadow: 0 6px 18px rgba(0,0,0,0.3);
 }
+@media (min-width: 700px) { .chat-panel { bottom: 16px; max-height: 60vh; } }
+.chat-panel.collapsed { max-height: none; }
+.chat-panel.collapsed .chat-log,
+.chat-panel.collapsed .chat-input-row { display: none; }
 .chat-header {
-  background: var(--brun);
-  color: var(--creme);
-  padding: 10px 14px;
+  background: linear-gradient(135deg, #e87b2a, #c8491d);
+  color: #fff;
+  padding: 6px 10px;
   border-radius: 12px 12px 0 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 44px;
 }
+.chat-header .chat-title { font-weight: bold; font-size: 0.95rem; }
+.chat-header .chat-actions { display: flex; }
 .chat-header button {
   background: none; border: none; color: inherit;
   font-size: 1.4rem; cursor: pointer; min-width: 44px; min-height: 44px;
+  line-height: 1;
 }
 .chat-log {
   flex: 1;
@@ -253,7 +266,7 @@ input[type="checkbox"] { width: 20px; height: 20px; min-height: 20px; vertical-a
   white-space: pre-wrap;
 }
 .msg.user { align-self: flex-end; background: var(--ocre); color: #fff; }
-.msg.bot { align-self: flex-start; background: #efe2c4; }
+.msg.bot { align-self: flex-start; background: #fdeeb8; }
 .chat-input-row { display: flex; gap: 6px; padding: 8px; }
 .chat-input-row input { flex: 1; min-width: 0; }
 .chat-input-row button { min-height: 44px; border-radius: 8px; border: none; background: var(--brun); color: var(--creme); font-family: inherit; padding: 0 12px; cursor: pointer; }
