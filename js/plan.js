@@ -160,9 +160,7 @@ function generatePlan(opts) {
   const refroidi = addMin(repas, -60); // pain tranché à l'heure du repas
   const enfournage = addMin(refroidi, -50); // 20 min couvert + 20-25 min découvert + marge
   const debutCuissonFour = addMin(enfournage, -30);
-  const finFaconnage = frigoH > 0
-    ? addJ(addMin(debutCuissonFour, -pousseFinaleMin), -1) // façonnage la veille, pousse au frigo
-    : addMin(debutCuissonFour, -pousseFinaleMin); // pousse ambiante le jour même
+  const finFaconnage = addMin(debutCuissonFour, -pousseFinaleMin); // la soustraction traverse minuit toute seule
   const debutPousseMasse = addMin(finFaconnage, -pousseMassMin);
   const finAutolyse = debutPousseMasse;
   const debutAutolyse = new Date(finAutolyse.getTime() - autolyseH * 3600000);
