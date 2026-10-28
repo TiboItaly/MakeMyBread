@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Make My Bread — Pain au levain</title>
+<meta name="description" content="Site coopératif de partage d'expérience sur le pain au levain : levain, farines, plans de production.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <h1>🍞 Make My Bread</h1>
+  <p class="tagline">Pain au levain — méthode, recettes et expérience partagées</p>
+</header>
+
+<main>
+  <!-- ============ LEVAIN ============ -->
+  <section id="tab-levain" class="tab-panel active" aria-label="Levain">
+    <div id="levain-content"></div>
+  </section>
+
+  <!-- ============ FARINE ============ -->
+  <section id="tab-farine" class="tab-panel" aria-label="Farine">
+    <div id="farine-content"></div>
+  </section>
+
+  <!-- ============ PLAN ============ -->
+  <section id="tab-plan" class="tab-panel" aria-label="Plan">
+    <div id="plan-content"></div>
+  </section>
+
+  <!-- ============ RECETTES & SAVOIR ============ -->
+  <section id="tab-savoir" class="tab-panel" aria-label="Recettes et savoir">
+    <div id="savoir-content"></div>
+  </section>
+</main>
+
+<button id="chat-fab" class="chat-fab" aria-label="Ouvrir l'assistant" title="Assistant">💬</button>
+<div id="chat-panel" class="chat-panel" hidden>
+  <div class="chat-header">
+    <span>Assistant pain</span>
+    <button id="chat-close" aria-label="Fermer">×</button>
+  </div>
+  <div id="chat-log" class="chat-log" aria-live="polite"></div>
+  <div class="chat-input-row">
+    <input id="chat-input" type="text" placeholder="Ex. ma pâte ne gonfle pas…" aria-label="Votre question">
+    <button id="chat-send">Envoyer</button>
+  </div>
+</div>
+
+<footer>
+  <p>MakeMyBread — contenu issu d'expérience réelle. 🍞</p>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/levain.js"></script>
+<script src="js/farine.js"></script>
+<script src="js/plan.js"></script>
+<script src="js/savoir.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
