@@ -2,6 +2,7 @@ const TABS = [
   { id: 'levain', ico: '🫙', label: 'Levain' },
   { id: 'farine', ico: '🌾', label: 'Farine' },
   { id: 'plan', ico: '📋', label: 'Plan' },
+  { id: 'techniques', ico: '🥣', label: 'Techniques' },
   { id: 'savoir', ico: '📖', label: 'Recettes' }
 ];
 
@@ -32,6 +33,7 @@ async function main() {
   renderLevain(BREAD_DATA);
   renderFarine(BREAD_DATA);
   renderPlan(BREAD_DATA);
+  renderTechniques(BREAD_DATA);
   renderSavoir(BREAD_DATA);
   initChat();
 }

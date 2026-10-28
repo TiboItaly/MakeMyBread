@@ -60,6 +60,7 @@ function renderFarine(data) {
     <div class="card farine-card">
       <h3>${f.nom} <span class="farine-badge">${f.type}</span></h3>
       <dl class="farine-kv">
+        <dt>Équivalent français</dt><dd>${f.equivalentFrancais || '—'}</dd>
         <dt>Force</dt><dd>${f.force}</dd>
         <dt>Absorption d'eau</dt><dd>${f.absorption}</dd>
         <dt>Comportement</dt><dd>${f.comportement}</dd>
@@ -78,8 +79,8 @@ function renderFarine(data) {
       <h3>Vue comparative</h3>
       <div style="overflow-x:auto">
         <table class="compare">
-          <tr><th>Farine</th><th>Force</th><th>Absorption</th><th>Usage</th></tr>
-          ${data.farines.map(f => `<tr><td>${f.nom}</td><td>${f.force}</td><td>${f.absorption}</td><td>${f.usage}</td></tr>`).join('')}
+          <tr><th>Farine</th><th>Équivalent FR</th><th>Force</th><th>Absorption</th><th>Usage</th></tr>
+          ${data.farines.map(f => `<tr><td>${f.nom}</td><td>${f.equivalentFrancais || '—'}</td><td>${f.force}</td><td>${f.absorption}</td><td>${f.usage}</td></tr>`).join('')}
         </table>
       </div>
     </div>

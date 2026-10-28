@@ -2,11 +2,26 @@
   "recetteReference": {
     "nom": "Boule de 800 g (recette de référence)",
     "ingredients": [
-      { "nom": "Farine tipo 0 (ou Manitoba pour la variante force)", "quantite": "350 g" },
-      { "nom": "Farine complète (integrale)", "quantite": "150 g" },
-      { "nom": "Eau (66 % d'hydratation ; 345-350 g si Manitoba)", "quantite": "330 g" },
-      { "nom": "Levain de production au pic", "quantite": "150 g" },
-      { "nom": "Sel", "quantite": "10 g" }
+      {
+        "nom": "Farine tipo 0 (ou Manitoba pour la variante force)",
+        "quantite": "350 g"
+      },
+      {
+        "nom": "Farine complète (integrale)",
+        "quantite": "150 g"
+      },
+      {
+        "nom": "Eau (66 % d'hydratation ; 345-350 g si Manitoba)",
+        "quantite": "330 g"
+      },
+      {
+        "nom": "Levain de production au pic",
+        "quantite": "150 g"
+      },
+      {
+        "nom": "Sel",
+        "quantite": "10 g"
+      }
     ]
   },
   "levain": {
@@ -30,10 +45,26 @@
       "manitoba": "Manitoba parfaitement adaptée au levain de production : dôme plus tenace, fenêtre de pic plus large."
     },
     "diagnostics": [
-      { "id": "liquide", "symptome": "Levain très liquide", "correctif": "Rafraîchir avec plus de farine (ratio 1:2:1 farine plus généreuse). Un levain liquide fonctionne, mais rattraper la consistance facilite la lecture du pic." },
-      { "id": "ne monte pas", "symptome": "Ne monte pas", "correctif": "Faire 2-3 rafraîchis rapprochés (toutes les 12 h) à température ambiante avec de la farine complète. Juger au volume, pas à l'horloge. Si le test de flottabilité échoue, le levain n'est pas prêt : attendre le pic." },
-      { "id": "odeur", "symptome": "Odeur forte (vinaigre, acétone)", "correctif": "Odeur de vinaigre : le levain a faim. Jeter une plus grande part et rafraîchir (1:2:2). Plusieurs rafraîchis sur 2 jours rétablissent l'équilibre." },
-      { "id": "hooch", "symptome": "Hooch (liquide gris en surface)", "correctif": "Signe de faim après un long repos au frigo. Jeter le hooch et rafraîchir normalement (50 g gardés + 50 g farine + 50 g eau)." }
+      {
+        "id": "liquide",
+        "symptome": "Levain très liquide",
+        "correctif": "Rafraîchir avec plus de farine (ratio 1:2:1 farine plus généreuse). Un levain liquide fonctionne, mais rattraper la consistance facilite la lecture du pic."
+      },
+      {
+        "id": "ne monte pas",
+        "symptome": "Ne monte pas",
+        "correctif": "Faire 2-3 rafraîchis rapprochés (toutes les 12 h) à température ambiante avec de la farine complète. Juger au volume, pas à l'horloge. Si le test de flottabilité échoue, le levain n'est pas prêt : attendre le pic."
+      },
+      {
+        "id": "odeur",
+        "symptome": "Odeur forte (vinaigre, acétone)",
+        "correctif": "Odeur de vinaigre : le levain a faim. Jeter une plus grande part et rafraîchir (1:2:2). Plusieurs rafraîchis sur 2 jours rétablissent l'équilibre."
+      },
+      {
+        "id": "hooch",
+        "symptome": "Hooch (liquide gris en surface)",
+        "correctif": "Signe de faim après un long repos au frigo. Jeter le hooch et rafraîchir normalement (50 g gardés + 50 g farine + 50 g eau)."
+      }
     ]
   },
   "farines": [
@@ -47,7 +78,8 @@
       "avantages": "Texture fine, idéale pour pâtes douces et pain de mie.",
       "difficultes": "Peu adaptée au levain rustique, alvéolage limité.",
       "usage": "Pain de mie, pâtes fraîches, focaccia douce.",
-      "impactPlan": "Pousse plus rapide à surveiller ; hydratation standard ou légèrement réduite."
+      "impactPlan": "Pousse plus rapide à surveiller ; hydratation standard ou légèrement réduite.",
+      "equivalentFrancais": "T45"
     },
     {
       "id": "tipo0",
@@ -59,7 +91,8 @@
       "avantages": "Polyvalente, tolérante, mie régulière.",
       "difficultes": "Peu de difficultés ; rester attentif au pétrissage.",
       "usage": "Base de la recette de référence (70 % du mélange).",
-      "impactPlan": "Timings standard du plan de référence."
+      "impactPlan": "Timings standard du plan de référence.",
+      "equivalentFrancais": "T55"
     },
     {
       "id": "tipo1",
@@ -71,7 +104,8 @@
       "avantages": "Meilleur goût que la tipo 0 tout en restant maniable.",
       "difficultes": "Pousse légèrement plus rapide, mie plus serrée.",
       "usage": "Remplacement partiel de la tipo 0.",
-      "impactPlan": "Pousse en masse légèrement écourtée (-15 à -30 min)."
+      "impactPlan": "Pousse en masse légèrement écourtée (-15 à -30 min).",
+      "equivalentFrancais": "T65"
     },
     {
       "id": "tipo2",
@@ -83,7 +117,8 @@
       "avantages": "Goût et nutrition.",
       "difficultes": "Mie plus dense, tolérance de pousse plus faible.",
       "usage": "Mélanges avec tipo 0.",
-      "impactPlan": "Prévoir un pliage de plus, mie plus serrée."
+      "impactPlan": "Prévoir un pliage de plus, mie plus serrée.",
+      "equivalentFrancais": "T80"
     },
     {
       "id": "integrale",
@@ -95,7 +130,8 @@
       "avantages": "Nutrition et goût maximum.",
       "difficultes": "Coupe le gluten, pousse plus lente.",
       "usage": "30 % maximum du total pour la boule.",
-      "impactPlan": "Pousse en masse plus longue (+30 à +60 min), hydratation à relever de 2-4 %."
+      "impactPlan": "Pousse en masse plus longue (+30 à +60 min), hydratation à relever de 2-4 %.",
+      "equivalentFrancais": "T110 à T150"
     },
     {
       "id": "manitoba",
@@ -107,7 +143,8 @@
       "avantages": "Tolérance élevée, belles alvéoles.",
       "difficultes": "Pétrissage plus long, piège du sur-pétrissage.",
       "usage": "Variante force de la recette de référence, pain de mie.",
-      "impactPlan": "Pic du levain plus tôt, autolyse longue recommandée, eau 345-350 g."
+      "impactPlan": "Pic du levain plus tôt, autolyse longue recommandée, eau 345-350 g.",
+      "equivalentFrancais": "T45/T55 de force (W 300+)"
     },
     {
       "id": "semoule",
@@ -119,7 +156,8 @@
       "avantages": "Couleur et goût typiques du sud.",
       "difficultes": "Gluten différent, mie plus compacte seule.",
       "usage": "Panetti, pains du sud, mélanges 20-30 %.",
-      "impactPlan": "Hydratation à ajuster, mie plus serrée si usage majoritaire."
+      "impactPlan": "Hydratation à ajuster, mie plus serrée si usage majoritaire.",
+      "equivalentFrancais": "— (pas d'équivalent, blé dur)"
     },
     {
       "id": "seigle",
@@ -131,7 +169,8 @@
       "avantages": "Levains spécifiques, pains du nord, goût acidulé.",
       "difficultes": "Peu de gluten, pain dense en forte proportion.",
       "usage": "Levains spécifiques, pains du nord, mélanges 10-20 %.",
-      "impactPlan": "Pétrissage réduit, pousse surveillée, hydratation relevée."
+      "impactPlan": "Pétrissage réduit, pousse surveillée, hydratation relevée.",
+      "equivalentFrancais": "T170 (seigle)"
     }
   ],
   "eau": {
@@ -143,13 +182,69 @@
     "test": "Lire l'étiquette de la bouteille d'eau minérale utilisée : chercher le résidu fixe, le calcium et le magnésium. Résidu fixe modéré (300-600 mg/L) = bon équilibre ; très élevé = eau dure, pâte plus ferme ; très bas = eau douce, pâte plus collante."
   },
   "processus": [
-    { "etape": "Autolyse", "dureeHeures": [1, 3], "objectif": "Farine + eau seuls, mélange sommaire. Longue autolyse recommandée pour les farines de force.", "sensoriel": "La pâte se rassemble sans pétrissage." },
-    { "etape": "Pétrissage au pic du levain", "dureeHeures": [0.25, 0.25], "objectif": "Incorporation du levain en morceaux, étirement-repli 5 min, pause 5 min, puis sel.", "sensoriel": "Test de la vitre : membrane translucide sans déchirure — arrêt immédiat dès qu'elle passe. Trop pétré = pâte caoutchouc." },
-    { "etape": "Pousse en masse", "dureeHeures": [3, 3], "objectif": "Température ambiante, un pliage par heure, mains mouillées, jamais de farine de correction.", "sensoriel": "+50 à 75 % de gonflement. Le volume juge, pas l'horloge." },
-    { "etape": "Façonnage", "dureeHeures": [0.1, 0.1], "objectif": "Démoulage rapide (moins de 2 minutes sur le plan), boule bien tendue, mains en creux. Cousure vers le haut dans un linge fariné ou banneton.", "sensoriel": "Surface tendue sans déchirure." },
-    { "etape": "Pousse finale au frigo", "dureeHeures": [12, 24], "objectif": "Zone idéale de goût vers 18-20 heures.", "sensoriel": "La pâte se raffermi et se parfume." },
-    { "etape": "Cuisson en cocotte", "dureeHeures": [0.75, 0.75], "objectif": "Four 250 °C, grille médiane, 30 min de chauffe cocotte vide, disque de papier cuisson au fond. Pain froid enfourné, entailles franches. 20 min couvert, 20-25 min à découvert, dix dernières minutes pain sur la grille (hors cocotte).", "sensoriel": "Croûte ambrée profonde, dessous non brûlé." },
-    { "etape": "Refroidissement", "dureeHeures": [1, 1], "objectif": "Sur grille avant de trancher.", "sensoriel": "Mie cuite à cœur, croûte croustillante." }
+    {
+      "etape": "Autolyse",
+      "dureeHeures": [
+        1,
+        3
+      ],
+      "objectif": "Farine + eau seuls, mélange sommaire. Longue autolyse recommandée pour les farines de force.",
+      "sensoriel": "La pâte se rassemble sans pétrissage."
+    },
+    {
+      "etape": "Pétrissage au pic du levain",
+      "dureeHeures": [
+        0.25,
+        0.25
+      ],
+      "objectif": "Incorporation du levain en morceaux, étirement-repli 5 min, pause 5 min, puis sel.",
+      "sensoriel": "Test de la vitre : membrane translucide sans déchirure — arrêt immédiat dès qu'elle passe. Trop pétré = pâte caoutchouc."
+    },
+    {
+      "etape": "Pousse en masse",
+      "dureeHeures": [
+        3,
+        3
+      ],
+      "objectif": "Température ambiante, un pliage par heure, mains mouillées, jamais de farine de correction.",
+      "sensoriel": "+50 à 75 % de gonflement. Le volume juge, pas l'horloge."
+    },
+    {
+      "etape": "Façonnage",
+      "dureeHeures": [
+        0.1,
+        0.1
+      ],
+      "objectif": "Démoulage rapide (moins de 2 minutes sur le plan), boule bien tendue, mains en creux. Cousure vers le haut dans un linge fariné ou banneton.",
+      "sensoriel": "Surface tendue sans déchirure."
+    },
+    {
+      "etape": "Pousse finale au frigo",
+      "dureeHeures": [
+        12,
+        24
+      ],
+      "objectif": "Zone idéale de goût vers 18-20 heures.",
+      "sensoriel": "La pâte se raffermi et se parfume."
+    },
+    {
+      "etape": "Cuisson en cocotte",
+      "dureeHeures": [
+        0.75,
+        0.75
+      ],
+      "objectif": "Four 250 °C, grille médiane, 30 min de chauffe cocotte vide, disque de papier cuisson au fond. Pain froid enfourné, entailles franches. 20 min couvert, 20-25 min à découvert, dix dernières minutes pain sur la grille (hors cocotte).",
+      "sensoriel": "Croûte ambrée profonde, dessous non brûlé."
+    },
+    {
+      "etape": "Refroidissement",
+      "dureeHeures": [
+        1,
+        1
+      ],
+      "objectif": "Sur grille avant de trancher.",
+      "sensoriel": "Mie cuite à cœur, croûte croustillante."
+    }
   ],
   "lecons": [
     "Mie dense : pousse en masse trop courte (juger au volume) et hydratation trop basse ; passage de 60 % à 66 % résolu le problème.",
@@ -160,9 +255,18 @@
     "Noix : jamais au pétrissage ; incorporation au premier ou deuxième pliage, 100-120 g max pour 500 g de farine, torréfiées d'abord et refroidies ; cuisson surveillée car les noix brûlent plus vite que la mie."
   ],
   "declinaisons": {
-    "painDeMie": { "ingredients": "450 g farine (dont 100 g complète), 240 g eau, 120 g levain, 10 g sel, 40 g beurre ou huile, 20 g miel", "cuisson": "Pousse courte, 200 °C dans un moule, 35-40 min ; couvercle rigide retiré pour les 5-8 dernières minutes ; démoulage immédiat ; tranchage le lendemain. Conservation 4-5 jours." },
-    "deuxPains": { "ingredients": "700 g tipo 0 + 300 g complète + 690-700 g eau + 300 g levain + 20 g sel", "cuisson": "Deux bannetons ou linges, cuisson séquentielle." },
-    "feuDeBois": { "conditions": "Chaleur descendante 280-320 °C, vapeur à créer soi-même (cocotte en fonte tout métal, ou lèche-frites d'eau sur les braises), thermomètre infrarouge recommandé.", "cuisson": "Environ 1,5 fois plus rapide ; hydratation réduite (62-64 %) conseillée." },
+    "painDeMie": {
+      "ingredients": "450 g farine (dont 100 g complète), 240 g eau, 120 g levain, 10 g sel, 40 g beurre ou huile, 20 g miel",
+      "cuisson": "Pousse courte, 200 °C dans un moule, 35-40 min ; couvercle rigide retiré pour les 5-8 dernières minutes ; démoulage immédiat ; tranchage le lendemain. Conservation 4-5 jours."
+    },
+    "deuxPains": {
+      "ingredients": "700 g tipo 0 + 300 g complète + 690-700 g eau + 300 g levain + 20 g sel",
+      "cuisson": "Deux bannetons ou linges, cuisson séquentielle."
+    },
+    "feuDeBois": {
+      "conditions": "Chaleur descendante 280-320 °C, vapeur à créer soi-même (cocotte en fonte tout métal, ou lèche-frites d'eau sur les braises), thermomètre infrarouge recommandé.",
+      "cuisson": "Environ 1,5 fois plus rapide ; hydratation réduite (62-64 %) conseillée."
+    },
     "noix": "100-120 g max pour 500 g de farine, incorporation au premier ou deuxième pliage, torréfiées et refroidies."
   },
   "conservation": [
@@ -174,5 +278,86 @@
   "couts": {
     "maison": "Pain de 800 g : environ 1,45 € en farines de supermarché, environ 2,40 € en bio de moulin, dont environ 0,50 € d'électricité (1,5-2 kWh par cycle).",
     "artisan": "Équivalent artisanal : 4 à 7 € le kg. Le pain maison revient deux à trois fois moins cher."
-  }
+  },
+  "techniques": [
+    {
+      "id": "autolyse",
+      "nom": "Autolyse",
+      "reel": "https://www.instagram.com/reel/autolyse-levain/",
+      "astuces": [
+        "Mélanger farine et eau sommairement — la pâte reste grumeleuse, c'est normal.",
+        "1 à 3 heures à température ambiante ; longue autolyse (3 h) recommandée pour les farines de force (Manitoba).",
+        "Ne jamais ajouter le sel ou le levain pendant l'autolyse.",
+        "Bénéfice : le gluten se développe tout seul, le pétrissage ensuite est plus court."
+      ]
+    },
+    {
+      "id": "petrissage",
+      "nom": "Pétrissage au pic",
+      "reel": "https://www.instagram.com/reel/petrissage-levain/",
+      "astuces": [
+        "Incorporer le levain en morceaux, puis étirement-repli 5 minutes, pause 5 minutes, puis le sel.",
+        "Test de la vitre : prélever une petite boule et l'étirer — membrane translucide sans déchirure.",
+        "Arrêt immédiat dès que le test passe : trop pétri = pâte caoutchouc (leçon de la « brique »).",
+        "Manitoba : pétrissage un peu plus long, gluten très élastique."
+      ]
+    },
+    {
+      "id": "pliage",
+      "nom": "Pliage (fold)",
+      "reel": "https://www.instagram.com/reel/pliage-pate-levain/",
+      "astuces": [
+        "Un pliage par heure pendant la pousse en masse.",
+        "Mains mouillées, jamais de farine de correction.",
+        "Attraper un bord, l'étirer sans le déchirer, le replier au centre ; tourner le bol et répéter sur les 4 bords.",
+        "Noix : incorporation au premier ou deuxième pliage, jamais au pétrissage."
+      ]
+    },
+    {
+      "id": "faconnage",
+      "nom": "Façonnage",
+      "reel": "https://www.instagram.com/reel/faconnage-boule-levain/",
+      "astuces": [
+        "Démoulage rapide : moins de 2 minutes sur le plan.",
+        "Boule bien tendue, mains en creux, rotation pour tendre la surface.",
+        "Cousure vers le haut dans un linge fariné ou un banneton.",
+        "Farine de force (Manitoba) : façonnage très docile."
+      ]
+    },
+    {
+      "id": "cuisson-cocotte",
+      "nom": "Cuisson en cocotte",
+      "reel": "https://www.instagram.com/reel/cuisson-cocotte-pain/",
+      "astuces": [
+        "Four 250 °C, grille en position médiane, 30 minutes de chauffe avec la cocotte vide.",
+        "Disque de papier cuisson au fond : évite le dessous brûlé.",
+        "Enfournage pain froid, entailles franches.",
+        "20 minutes couvert, 20-25 minutes à découvert, dix dernières minutes pain sorti de la cocotte sur la grille."
+      ]
+    },
+    {
+      "id": "cuisson-plaque",
+      "nom": "Cuisson plaque + vapeur",
+      "reel": "https://www.instagram.com/reel/cuisson-vapeur-pain/",
+      "astuces": [
+        "Alternative à la cocotte : pain sur pierre ou plaque chaude, vapeur créée soi-même.",
+        "Préchauffer le four 250 °C avec un lèche-frites vide en dessous.",
+        "À l'enfournage : verser de l'eau chaude dans le lèche-frites et brumiser les parois du four (attention aux mains).",
+        "Vapeur pendant les 10-12 premières minutes, puis évacuer (entrouvrir la porte 30 s) et finir à sec 20-25 minutes.",
+        "Surveiller la coloration : sans cocotte, la croûte dore plus vite."
+      ]
+    },
+    {
+      "id": "conservation",
+      "nom": "Conservation",
+      "reel": "https://www.instagram.com/reel/conservation-pain-levain/",
+      "astuces": [
+        "Jours 1-3 : entier, face de coupe contre une planche, à l'air libre.",
+        "Jamais de boîte hermétique ni de frigo.",
+        "Jours 4-6 : tranches grillées, ou congeler les tranches dès le deuxième jour.",
+        "Au-delà : croûtons, chapelure, panzanella.",
+        "Ne jamais trancher à l'avance."
+      ]
+    }
+  ]
 }

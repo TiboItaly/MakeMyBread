@@ -133,6 +133,36 @@ h3 { color: var(--brun); margin-bottom: 6px; }
   margin-left: 6px;
   vertical-align: middle;
 }
+.reel-link {
+  text-decoration: none;
+  font-size: 1.1rem;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.reminder-btn {
+  min-height: 44px;
+  border: 2px dashed var(--ocre);
+  background: #fff3d6;
+  color: var(--brun-fonce);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+.reminder-btn:active { background: var(--ocre-clair); }
+.reminder-btn.added { border-style: solid; background: #e4f0d9; color: var(--vert); }
+.tech-link {
+  display: inline-block;
+  margin-top: 4px;
+  color: var(--brun-fonce);
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: var(--ocre);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
 .farine-kv { margin: 6px 0; }
 .farine-kv dt { font-weight: bold; color: var(--brun); font-size: 0.85rem; text-transform: uppercase; }
 .farine-kv dd { margin: 0 0 8px; }
@@ -153,7 +183,7 @@ table.compare tr:nth-child(even) { background: #f7ecd2; }
 
 /* ---- Formulaires ---- */
 label { font-weight: bold; color: var(--brun-fonce); display: block; margin: 12px 0 4px; }
-input[type="number"], input[type="time"], select, input[type="text"] {
+input[type="number"], input[type="time"], input[type="date"], select, input[type="text"] {
   width: 100%;
   min-height: 44px;
   padding: 8px;
@@ -198,6 +228,7 @@ input[type="checkbox"] { width: 20px; height: 20px; min-height: 20px; vertical-a
 .plan-step:nth-child(even) { border-left-color: var(--vert-vif); }
 .plan-step .step-title { font-weight: bold; }
 .plan-step .objectif { font-size: 0.92rem; margin-top: 4px; }
+.step-ings { font-size: 0.9rem; background: #fff3d6; border-radius: 6px; padding: 6px 8px; margin-top: 6px; }
 
 /* ---- Chat ---- */
 .chat-fab {
