@@ -7,11 +7,12 @@ function renderTechniques(data) {
       const extra = t.id === 'conservation'
         ? ''
         : '';
-      const astucesHtml = t.astuces.map(a =>
-        t.id === 'conservation' && a.includes('panzanella')
-          ? `<li>${a.replace('panzanella', '<span class="tech-link" data-goto="panzanella" style="font-weight:normal">panzanella</span>')}</li>`
-          : `<li>${a}</li>`
-      ).join('');
+      const astucesHtml = t.astuces.map(a => {
+        if (t.id !== 'conservation' || !a.includes('panzanella')) return `<li>${a}</li>`;
+        return `<li>${a
+          .replace('panzanella', '<span class="tech-link" data-goto="panzanella" style="font-weight:normal">panzanella</span>')
+          .replace('pain perdu', '<span class="tech-link" data-goto="pain-perdu" style="font-weight:normal">pain perdu</span>')}</li>`;
+      }).join('');
       return `
       <div class="card technique-card" id="tech-${t.id}">
         <h3>${t.nom}
@@ -26,16 +27,18 @@ function renderTechniques(data) {
 }
 
 function initTechniqueLinks() {
-  document.querySelectorAll('[data-goto="panzanella"]').forEach(l => {
-    l.addEventListener('click', () => {
-      const navBtn = document.querySelector(`.tab-nav button[data-tab="savoir"]`);
-      if (navBtn) navBtn.click();
-      setTimeout(() => {
-        const target = document.getElementById('recette-panzanella');
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 60);
-    });
-  });
+  const goToRecette = id => {
+    const navBtn = document.querySelector(`.tab-nav button[data-tab="savoir"]`);
+    if (navBtn) navBtn.click();
+    setTimeout(() => {
+      const target = document.getElementById(id);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
+  };
+  document.querySelectorAll('[data-goto="panzanella"]').forEach(l =>
+    l.addEventListener('click', () => goToRecette('recette-panzanella')));
+  document.querySelectorAll('[data-goto="pain-perdu"]').forEach(l =>
+    l.addEventListener('click', () => goToRecette('recette-pain-perdu')));
 }
 
 function goToTechnique(techId) {
