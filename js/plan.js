@@ -29,6 +29,12 @@ function renderPlan(data) {
   el.innerHTML = `
     <h2>Plan de production</h2>
 
+    <div class="subtabs">
+      <button class="subtab active" data-sub="pain">🥖 Pain</button>
+      <button class="subtab" data-sub="brioche">🧁 Brioche</button>
+    </div>
+
+    <div id="plan-pain">
     <div class="card">
       <h3>Paramètres</h3>
 
@@ -72,7 +78,21 @@ function renderPlan(data) {
     </div>
 
     <div id="plan-output"></div>
+    </div>
+
+    <div id="plan-brioche" hidden></div>
   `;
+
+  el.querySelectorAll('.subtab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      el.querySelectorAll('.subtab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      el.querySelector('#plan-pain').hidden = btn.dataset.sub !== 'pain';
+      el.querySelector('#plan-brioche').hidden = btn.dataset.sub !== 'brioche';
+    });
+  });
+
+  renderBrioche(data);
 
   const frigoInput = el.querySelector('#plan-frigo');
   const frigoComment = el.querySelector('#plan-frigo-comment');
@@ -139,6 +159,143 @@ function fakeAddReminder(date, title) {
   // Fonctionnalité "fake" : à terme, intégration à l'app Rappels du téléphone
   const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
   return `Rappel prévu pour le ${date.toLocaleString('fr-FR', options)} : « ${title} »`;
+}
+
+function renderBrioche(data) {
+  const el = document.getElementById('plan-brioche');
+  const b = data.brioche;
+  const demain = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
+
+  el.innerHTML = `
+    <div class="card">
+      <h3>${b.nom}</h3>
+      <p>${b.intro}</p>
+      <label for="brioche-date">Prête pour le petit-déjeuner de quand ?</label>
+      <input type="date" id="brioche-date" value="${demain}" min="${new Date().toISOString().slice(0, 10)}">
+      <label for="brioche-heure">Heure du petit-déjeuner</label>
+      <input type="time" id="brioche-heure" value="09:00">
+      <button class="btn" id="brioche-generate">Générer le plan brioche</button>
+    </div>
+    <div id="brioche-output"></div>
+  `;
+
+  el.querySelector('#brioche-generate').addEventListener('click', () => {
+    const dateRepas = el.querySelector('#brioche-date').value;
+    const heureRepas = el.querySelector('#brioche-heure').value;
+    generateBriochePlan({ dateRepas, heureRepas });
+  });
+}
+
+function generateBriochePlan(opts) {
+  const out = document.getElementById('brioche-output');
+  const data = BREAD_DATA;
+  const b = data.brioche;
+
+  const [ch, cm] = opts.heureRepas.split(':').map(Number);
+  const [yy, mm, dd] = opts.dateRepas.split('-').map(Number);
+  const repas = new Date(yy, mm - 1, dd, ch, cm, 0);
+
+  // Le matin, à rebours depuis le petit-déjeuner : 28 min cuisson + 5 min dorure + pousse 1h45 + détente 15 min
+  const pret = repas;
+  const enfournage = addMin(pret, -28);
+  const dorure = addMin(enfournage, -5);
+  const finPousse = dorure;
+  const debutPousse = addMin(finPousse, -105);
+  const sortieFrigo = addMin(debutPousse, -15);
+
+  // La veille au soir : pétrissage fixé à 20h30 (pâte au frigo ~22h20, nuit complète)
+  const veille = new Date(repas.getTime() - 86400000);
+  const debutPetrissage = new Date(veille); debutPetrissage.setHours(20, 30, 0, 0);
+  const finPetrissage = addMin(debutPetrissage, 50);
+  const pousseAmbianteVeille = addMin(finPetrissage, 60);
+  const debut = debutPetrissage;
+  const nuitFrigo = pousseAmbianteVeille;
+
+  const step = (date, title, _tech, objectif, ings, sensoriel) => {
+    const ingHtml = ings && ings.length
+      ? `<div class="step-ings"><strong>Ingrédients :</strong> ${ings.join(' • ')}</div>` : '';
+    return `
+    <div class="plan-step">
+      <div class="step-time">${jourFr(date)} — ${fmtHm(date)}</div>
+      <div class="step-title">${title}</div>
+      <div class="objectif">${objectif}</div>
+      ${ingHtml}
+      ${sensoriel ? `<div class="sensoriel">🎯 ${sensoriel}</div>` : ''}
+      <button class="reminder-btn" data-date="${date.toISOString()}" data-title="${title}">⏰ Ajouter aux Rappels du téléphone</button>
+    </div>`;
+  };
+
+  let html = `
+    <div class="card">
+      <h3>Plan brioche — prête le ${jourFr(pret)} à ${fmtHm(pret)}</h3>
+      <p>Pousse lente de nuit au réfrigérateur : c'est elle qui donne le goût et la mie filante. Préparation la veille au soir (~2 h), façonnage et cuisson le matin (~2 h).</p>
+      <p><strong>Ingrédients :</strong></p>
+      <ul>${b.ingredients.map(i => `<li>${i}</li>`).join('')}</ul>
+    </div>
+  `;
+
+  html += step(debut, '🥣 Pétrissage de la pâte', null,
+    'Farine, levure, sucre, zeste d\'orange, Marsala, lait tiède et œufs : pétrir 15 min jusqu\'à obtenir une pâte lisse. Puis le sel, puis le beurre froid en 4-5 fois en pétrissant bien entre chaque ajout. La pâte doit devenir brillante et se décoller des parois (~20 min de pétrissage total).',
+    [b.ingredients[0], b.ingredients[1], b.ingredients[2], b.ingredients[3], b.ingredients[4], b.ingredients[7], b.ingredients[8]],
+    'Pâte brillante qui se décolle des parois.');
+  html += step(finPetrissage, '🍊 Fruits confits (fin de pétrissage)', null,
+    'Incorporer les fruits confits 30 s à vitesse minimale, juste le temps de les répartir — ou les réserver pour le façonnage. Jamais en début de pétrissage : ils coupent le réseau de gluten.',
+    [b.ingredients[9]],
+    'Fruits répartis sans sur-pétrir.');
+  html += step(pousseAmbianteVeille, '🌡️ Pousse 1 h à température ambiante', null,
+    'Bouler la pâte, couvrir, laisser pousser 1 heure.',
+    [],
+    '');
+  html += step(nuitFrigo, '❄️ Nuit au frigo', null,
+    `Filmer au contact, réfrigérateur pour la nuit (jusqu'à ${fmtHm(sortieFrigo)} demain matin). La pousse lente développe le goût et donne une mie filante.`,
+    [],
+    'La pâte se raffermi — c\'est normal, le beurre solidifie.');
+  html += step(sortieFrigo, '🥐 Façonnage en tresse', null,
+    'Sortir la pâte du frigo. Si elle est trop froide, la laisser 15 min sur le plan. Façonner une tresse de 3 brins roulés en boudins de 25-30 cm, tressés sans serrer. Plaque garnie de papier sulfurisé ou moule à cake 24-26 cm. Si les fruits ont été réservés, les disperser sur la pâte étalée avant de replier et tresser.',
+    [],
+    'Tresse posée sans serrer — elle gonflera.');
+  html += step(debutPousse, '🌅 Seconde pousse', null,
+    '1 h 30 à 2 heures à température ambiante, à l\'abri des courants d\'air.',
+    [],
+    'La tresse doit gonfler visiblement et devenir souple au toucher.');
+  html += step(dorure, '🥚 Dorure', null,
+    'Jaune d\'œuf mélangé au lait. Déposer quelques dés de papaye sur le dessus.',
+    [b.ingredients[10]],
+    '');
+  html += step(enfournage, '🔥 Cuisson 175 °C', null,
+    '25-28 minutes pour une tresse sur plaque, 30-35 minutes en moule à cake. Couvrir d\'aluminium si la brioche fonce trop vite.',
+    [],
+    'Sonner creux dessous, environ 88 °C à cœur.');
+
+  html += `
+    <div class="card">
+      <h3>Les trois secrets</h3>
+      <ul>${b.secrets.map(s => `<li>${s}</li>`).join('')}</ul>
+      <h3>Astuces</h3>
+      <ul>${b.astuces.map(a => `<li>${a}</li>`).join('')}</ul>
+    </div>
+    <div class="card">
+      <button class="btn" id="brioche-copy">📋 Copier la checklist</button>
+    </div>
+  `;
+
+  out.innerHTML = html;
+
+  out.querySelectorAll('.reminder-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const d = new Date(btn.dataset.date);
+      const msg = fakeAddReminder(d, btn.dataset.title);
+      btn.classList.add('added');
+      btn.textContent = '✅ ' + msg;
+    });
+  });
+  out.querySelector('#brioche-copy').addEventListener('click', () => {
+    const txt = out.innerText;
+    navigator.clipboard?.writeText(txt).then(() => {
+      out.querySelector('#brioche-copy').textContent = '✅ Copié !';
+      setTimeout(() => out.querySelector('#brioche-copy').textContent = '📋 Copier la checklist', 2000);
+    });
+  });
 }
 
 function generatePlan(opts) {

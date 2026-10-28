@@ -368,5 +368,32 @@
         "Ne jamais trancher à l'avance."
       ]
     }
-  ]
+  ],
+  "brioche": {
+    "nom": "Brioche italienne aux fruits confits",
+    "intro": "Brioche à pousse lente de nuit, prête le lendemain matin. Préparation la veille au soir, façonnage et cuisson le matin.",
+    "ingredients": [
+      "500 g de farine Manitoba ou T45 spécial viennoiserie (au moins 12 g de protéines pour 100 g ; idéalement W 350+ ou « per grandi lievitati »)",
+      "10 g de levure de bière fraîche (ou 4 g de levure sèche)",
+      "80 g de sucre",
+      "3 œufs entiers",
+      "120 ml de lait tiède",
+      "150 g de beurre froid, en morceaux",
+      "8 g de sel",
+      "Le zeste d'une orange non traitée",
+      "1 c. à s. de Marsala (facultatif ; remplaçable par rhum, Vin Santo ou jus d'orange)",
+      "150 à 200 g de fruits confits : 120 g de papaye + 60 g de gingembre, en dés de 8-10 mm, rincés et séchés",
+      "Dorure : 1 jaune d'œuf + 1 cuillère de lait"
+    ],
+    "secrets": [
+      "La farine : riche en protéines. Le beurre fragilise le gluten ; une farine pauvre donne une pâte qui se déchire et une brioche plate.",
+      "La pousse lente d'une nuit au réfrigérateur : c'est elle qui donne le goût et la texture.",
+      "Les fruits confits : incorporés en fin de pétrissage ou au façonnage, jamais au début, et sans sur-pétrir."
+    ],
+    "astuces": [
+      "Si la pâte est trop froide le matin, la laisser 15 minutes sur le plan de travail avant de la façonner.",
+      "Saupoudrer les dés de fruits d'une cuillère de farine s'ils se collent entre eux.",
+      "La brioche se garde 2 à 3 jours dans un sac en papier, et se tranche mieux le lendemain."
+    ]
+  }
 }
