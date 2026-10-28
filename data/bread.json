@@ -1,0 +1,178 @@
+{
+  "recetteReference": {
+    "nom": "Boule de 800 g (recette de référence)",
+    "ingredients": [
+      { "nom": "Farine tipo 0 (ou Manitoba pour la variante force)", "quantite": "350 g" },
+      { "nom": "Farine complète (integrale)", "quantite": "150 g" },
+      { "nom": "Eau (66 % d'hydratation ; 345-350 g si Manitoba)", "quantite": "330 g" },
+      { "nom": "Levain de production au pic", "quantite": "150 g" },
+      { "nom": "Sel", "quantite": "10 g" }
+    ]
+  },
+  "levain": {
+    "creation": [
+      "Jour 1 : mélanger 50 g de farine complète et 50 g d'eau dans un bocal. Couvrir légèrement, laisser à température ambiante.",
+      "Jours 2-3 : rafraîchir chaque jour : garder 50 g, ajouter 50 g de farine et 50 g d'eau. Des bulles apparaissent normalement entre le jour 2 et le jour 4.",
+      "Jours 4-7 : poursuivre les rafraîchis quotidiens. Le levain doit doubler de volume en 4-8 heures et sentir l'acidité agréable (yaourt, pomme).",
+      "Test de flottabilité : une cuillère de levain doit flotter dans un verre d'eau. S'il coule, il n'est pas au pic — continuer les rafraîchis.",
+      "Après environ 7 jours : le levain est prêt. Passer à l'entretien hebdomadaire."
+    ],
+    "entretien": [
+      "Conservation au frigo, rafraîchi une fois par semaine.",
+      "Au réveil : jeter le hooch (liquide gris en surface) éventuel, puis rafraîchi : 50 g gardés + 50 g de farine + 50 g d'eau.",
+      "Signes de bonne santé : odeur acidulée agréable, dôme en 4 à 6 heures après rafraîchi à température ambiante."
+    ],
+    "production": {
+      "ratios": "50 g de mère + 150 g de farine + 100 g d'eau = 300 g",
+      "pic": "Pic en 4 à 6 heures à température ambiante.",
+      "regle": "150 g de levain de production par pain ; 300 g couvrent exactement deux pains.",
+      "directFroid": "Construction directe depuis la mère froide possible, mais pic retardé de 1 à 2 heures et moins prévisible. Le rafraîchi intermédiaire reste la voie recommandée.",
+      "manitoba": "Manitoba parfaitement adaptée au levain de production : dôme plus tenace, fenêtre de pic plus large."
+    },
+    "diagnostics": [
+      { "id": "liquide", "symptome": "Levain très liquide", "correctif": "Rafraîchir avec plus de farine (ratio 1:2:1 farine plus généreuse). Un levain liquide fonctionne, mais rattraper la consistance facilite la lecture du pic." },
+      { "id": "ne monte pas", "symptome": "Ne monte pas", "correctif": "Faire 2-3 rafraîchis rapprochés (toutes les 12 h) à température ambiante avec de la farine complète. Juger au volume, pas à l'horloge. Si le test de flottabilité échoue, le levain n'est pas prêt : attendre le pic." },
+      { "id": "odeur", "symptome": "Odeur forte (vinaigre, acétone)", "correctif": "Odeur de vinaigre : le levain a faim. Jeter une plus grande part et rafraîchir (1:2:2). Plusieurs rafraîchis sur 2 jours rétablissent l'équilibre." },
+      { "id": "hooch", "symptome": "Hooch (liquide gris en surface)", "correctif": "Signe de faim après un long repos au frigo. Jeter le hooch et rafraîchir normalement (50 g gardés + 50 g farine + 50 g eau)." }
+    ]
+  },
+  "farines": [
+    {
+      "id": "tipo00",
+      "nom": "Tipo 00",
+      "type": "Très raffinée",
+      "force": "W 200-230 environ",
+      "absorption": "Faible à moyenne",
+      "comportement": "Pâte douce et facile, mais réseau de gluten peu rustique.",
+      "avantages": "Texture fine, idéale pour pâtes douces et pain de mie.",
+      "difficultes": "Peu adaptée au levain rustique, alvéolage limité.",
+      "usage": "Pain de mie, pâtes fraîches, focaccia douce.",
+      "impactPlan": "Pousse plus rapide à surveiller ; hydratation standard ou légèrement réduite."
+    },
+    {
+      "id": "tipo0",
+      "nom": "Tipo 0",
+      "type": "Raffinée, polyvalente",
+      "force": "W 230-270 environ",
+      "absorption": "Moyenne (≈ 66 % dans la recette de référence)",
+      "comportement": "La référence du pain quotidien, équilibrée entre force et goût.",
+      "avantages": "Polyvalente, tolérante, mie régulière.",
+      "difficultes": "Peu de difficultés ; rester attentif au pétrissage.",
+      "usage": "Base de la recette de référence (70 % du mélange).",
+      "impactPlan": "Timings standard du plan de référence."
+    },
+    {
+      "id": "tipo1",
+      "nom": "Tipo 1",
+      "type": "Semi-complète",
+      "force": "W 240-280 environ",
+      "absorption": "Moyenne à élevée",
+      "comportement": "Fermentation plus vive, goût plus prononcé, mie un peu plus serrée.",
+      "avantages": "Meilleur goût que la tipo 0 tout en restant maniable.",
+      "difficultes": "Pousse légèrement plus rapide, mie plus serrée.",
+      "usage": "Remplacement partiel de la tipo 0.",
+      "impactPlan": "Pousse en masse légèrement écourtée (-15 à -30 min)."
+    },
+    {
+      "id": "tipo2",
+      "nom": "Tipo 2",
+      "type": "Peu raffinée",
+      "force": "Variable",
+      "absorption": "Élevée",
+      "comportement": "Bonne fermentation, goût riche, mie serrée.",
+      "avantages": "Goût et nutrition.",
+      "difficultes": "Mie plus dense, tolérance de pousse plus faible.",
+      "usage": "Mélanges avec tipo 0.",
+      "impactPlan": "Prévoir un pliage de plus, mie plus serrée."
+    },
+    {
+      "id": "integrale",
+      "nom": "Integrale (complète)",
+      "type": "Complète",
+      "force": "Faible (coupe le gluten)",
+      "absorption": "Très élevée",
+      "comportement": "Fermente plus lentement, mie naturellement plus serrée.",
+      "avantages": "Nutrition et goût maximum.",
+      "difficultes": "Coupe le gluten, pousse plus lente.",
+      "usage": "30 % maximum du total pour la boule.",
+      "impactPlan": "Pousse en masse plus longue (+30 à +60 min), hydratation à relever de 2-4 %."
+    },
+    {
+      "id": "manitoba",
+      "nom": "Manitoba / farine de force",
+      "type": "Force",
+      "force": "W 300+",
+      "absorption": "Élevée (+5-8 % d'eau)",
+      "comportement": "Gluten très élastique, alvéoles plus grandes, façonnage très docile.",
+      "avantages": "Tolérance élevée, belles alvéoles.",
+      "difficultes": "Pétrissage plus long, piège du sur-pétrissage.",
+      "usage": "Variante force de la recette de référence, pain de mie.",
+      "impactPlan": "Pic du levain plus tôt, autolyse longue recommandée, eau 345-350 g."
+    },
+    {
+      "id": "semoule",
+      "nom": "Semoule de blé dur (semola/rimacinata)",
+      "type": "Blé dur",
+      "force": "Variable",
+      "absorption": "Moyenne",
+      "comportement": "Pâte dorée, saveur douce et sucrée.",
+      "avantages": "Couleur et goût typiques du sud.",
+      "difficultes": "Gluten différent, mie plus compacte seule.",
+      "usage": "Panetti, pains du sud, mélanges 20-30 %.",
+      "impactPlan": "Hydratation à ajuster, mie plus serrée si usage majoritaire."
+    },
+    {
+      "id": "seigle",
+      "nom": "Farine de seigle",
+      "type": "Seigle",
+      "force": "Faible",
+      "absorption": "Très élevée",
+      "comportement": "Pâte collante, fermentation vive.",
+      "avantages": "Levains spécifiques, pains du nord, goût acidulé.",
+      "difficultes": "Peu de gluten, pain dense en forte proportion.",
+      "usage": "Levains spécifiques, pains du nord, mélanges 10-20 %.",
+      "impactPlan": "Pétrissage réduit, pousse surveillée, hydratation relevée."
+    }
+  ],
+  "eau": {
+    "parametres": [
+      "Dureté (calcaire, degrés français ou allemands) : une eau trop calcaire durcit la pâte, une eau trop douce la rend collante.",
+      "Minéralité (calcium, magnésium) : nourrit la fermentation en quantité raisonnable.",
+      "Traitement (chlorée ou non) : une eau très chlorée peut freiner le levain — laisser reposer l'eau à l'air libre une heure avant usage."
+    ],
+    "test": "Lire l'étiquette de la bouteille d'eau minérale utilisée : chercher le résidu fixe, le calcium et le magnésium. Résidu fixe modéré (300-600 mg/L) = bon équilibre ; très élevé = eau dure, pâte plus ferme ; très bas = eau douce, pâte plus collante."
+  },
+  "processus": [
+    { "etape": "Autolyse", "dureeHeures": [1, 3], "objectif": "Farine + eau seuls, mélange sommaire. Longue autolyse recommandée pour les farines de force.", "sensoriel": "La pâte se rassemble sans pétrissage." },
+    { "etape": "Pétrissage au pic du levain", "dureeHeures": [0.25, 0.25], "objectif": "Incorporation du levain en morceaux, étirement-repli 5 min, pause 5 min, puis sel.", "sensoriel": "Test de la vitre : membrane translucide sans déchirure — arrêt immédiat dès qu'elle passe. Trop pétré = pâte caoutchouc." },
+    { "etape": "Pousse en masse", "dureeHeures": [3, 3], "objectif": "Température ambiante, un pliage par heure, mains mouillées, jamais de farine de correction.", "sensoriel": "+50 à 75 % de gonflement. Le volume juge, pas l'horloge." },
+    { "etape": "Façonnage", "dureeHeures": [0.1, 0.1], "objectif": "Démoulage rapide (moins de 2 minutes sur le plan), boule bien tendue, mains en creux. Cousure vers le haut dans un linge fariné ou banneton.", "sensoriel": "Surface tendue sans déchirure." },
+    { "etape": "Pousse finale au frigo", "dureeHeures": [12, 24], "objectif": "Zone idéale de goût vers 18-20 heures.", "sensoriel": "La pâte se raffermi et se parfume." },
+    { "etape": "Cuisson en cocotte", "dureeHeures": [0.75, 0.75], "objectif": "Four 250 °C, grille médiane, 30 min de chauffe cocotte vide, disque de papier cuisson au fond. Pain froid enfourné, entailles franches. 20 min couvert, 20-25 min à découvert, dix dernières minutes pain sur la grille (hors cocotte).", "sensoriel": "Croûte ambrée profonde, dessous non brûlé." },
+    { "etape": "Refroidissement", "dureeHeures": [1, 1], "objectif": "Sur grille avant de trancher.", "sensoriel": "Mie cuite à cœur, croûte croustillante." }
+  ],
+  "lecons": [
+    "Mie dense : pousse en masse trop courte (juger au volume) et hydratation trop basse ; passage de 60 % à 66 % résolu le problème.",
+    "Dessous brûlé : contact direct avec la fonte ; grille plus haute, disque de papier, pain sorti de la cocotte en fin de cuisson.",
+    "Mie légèrement humide : cinq minutes de cuisson en plus.",
+    "Farines complètes : fermentent plus lentement, mie naturellement plus serrée ; 30 % de complète est le compromis goût/texture.",
+    "Manitoba : absorbe 5-8 % d'eau en plus, gluten très élastique, pétrissage un peu plus long, autolyse longue recommandée, façonnage très docile.",
+    "Noix : jamais au pétrissage ; incorporation au premier ou deuxième pliage, 100-120 g max pour 500 g de farine, torréfiées d'abord et refroidies ; cuisson surveillée car les noix brûlent plus vite que la mie."
+  ],
+  "declinaisons": {
+    "painDeMie": { "ingredients": "450 g farine (dont 100 g complète), 240 g eau, 120 g levain, 10 g sel, 40 g beurre ou huile, 20 g miel", "cuisson": "Pousse courte, 200 °C dans un moule, 35-40 min ; couvercle rigide retiré pour les 5-8 dernières minutes ; démoulage immédiat ; tranchage le lendemain. Conservation 4-5 jours." },
+    "deuxPains": { "ingredients": "700 g tipo 0 + 300 g complète + 690-700 g eau + 300 g levain + 20 g sel", "cuisson": "Deux bannetons ou linges, cuisson séquentielle." },
+    "feuDeBois": { "conditions": "Chaleur descendante 280-320 °C, vapeur à créer soi-même (cocotte en fonte tout métal, ou lèche-frites d'eau sur les braises), thermomètre infrarouge recommandé.", "cuisson": "Environ 1,5 fois plus rapide ; hydratation réduite (62-64 %) conseillée." },
+    "noix": "100-120 g max pour 500 g de farine, incorporation au premier ou deuxième pliage, torréfiées et refroidies."
+  },
+  "conservation": [
+    "Jours 1-3 : entier, face de coupe contre une planche, à l'air libre ; jamais de boîte hermétique ni de frigo.",
+    "Jours 4-6 : tranches grillées ou congélation des tranches dès le deuxième jour.",
+    "Au-delà : croûtons, chapelure, panzanella.",
+    "Ne jamais trancher à l'avance."
+  ],
+  "couts": {
+    "maison": "Pain de 800 g : environ 1,45 € en farines de supermarché, environ 2,40 € en bio de moulin, dont environ 0,50 € d'électricité (1,5-2 kWh par cycle).",
+    "artisan": "Équivalent artisanal : 4 à 7 € le kg. Le pain maison revient deux à trois fois moins cher."
+  }
+}
